@@ -1,0 +1,41 @@
+from gtts import gTTS
+import os
+import pyttsx3
+import os
+
+text = "Hello? You...whats your name. You look distracted"
+language = 'en'
+
+# initialize the pyttsx3 engine
+engine = pyttsx3.init()
+
+# set the voice property to change the voice
+voice_id = "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Speech\Voices\Tokens\TTS_MS_FR-CA_HARVEY_11.0"
+engine.setProperty('voice', voice_id)
+
+
+# voices = engine.getProperty('voices')
+# engine.setProperty('voice', voices[1].id)  # for example, set the voice to the second available voice
+
+
+# set the speech rate
+rate = engine.getProperty('rate')
+engine.setProperty('rate', rate - 50)
+
+
+# say the text using the engine
+engine.say(text)
+engine.runAndWait()
+
+# # save the synthesized speech as an mp3 file
+# engine.save_to_file(text, 'output.mp3')
+# engine.runAndWait()
+
+# create a gTTS object and specify language
+tts = gTTS(text=text, lang=language)
+
+# save the synthesized speech as an mp3 file
+tts.save("output1.mp3")
+
+# play the synthesized speech
+os.system("output1.mp3")
